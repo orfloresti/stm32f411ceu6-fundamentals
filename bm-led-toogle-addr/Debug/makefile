@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (9-2020-q2-update)
+# Toolchain: GNU Tools for STM32 (12.3.rel1)
 ################################################################################
 
 -include ../makefile.init
@@ -11,7 +11,6 @@ RM := rm -rf
 -include sources.mk
 -include Startup/subdir.mk
 -include Src/subdir.mk
--include subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -34,34 +33,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := bm-stm32f411-00-led-toogle-addr
+BUILD_ARTIFACT_NAME := bm-led-toogle-addr
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-bm-stm32f411-00-led-toogle-addr.elf \
+bm-led-toogle-addr.elf \
+
+MAP_FILES += \
+bm-led-toogle-addr.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-bm-stm32f411-00-led-toogle-addr.list \
-
-OBJCOPY_BIN += \
-bm-stm32f411-00-led-toogle-addr.bin \
+bm-led-toogle-addr.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: bm-stm32f411-00-led-toogle-addr.elf secondary-outputs
+main-build: bm-led-toogle-addr.elf secondary-outputs
 
 # Tool invocations
-bm-stm32f411-00-led-toogle-addr.elf: $(OBJS) $(USER_OBJS) /home/orlando_floresti/ARMProjects/SourceCode/stm32cubeide/stm32f411ceu6/bm-stm32f411-00-led-toogle-addr/STM32F411CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "bm-stm32f411-00-led-toogle-addr.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/orlando_floresti/ARMProjects/SourceCode/stm32cubeide/stm32f411ceu6/bm-stm32f411-00-led-toogle-addr/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="bm-stm32f411-00-led-toogle-addr.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+bm-led-toogle-addr.elf bm-led-toogle-addr.map: $(OBJS) $(USER_OBJS) D:\Projects\stm32\stm32f411ceu6\bm-led-toogle-addr\STM32F411CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "bm-led-toogle-addr.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\Projects\stm32\stm32f411ceu6\bm-led-toogle-addr\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="bm-led-toogle-addr.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -70,22 +69,17 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-bm-stm32f411-00-led-toogle-addr.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "bm-stm32f411-00-led-toogle-addr.list"
-	@echo 'Finished building: $@'
-	@echo ' '
-
-bm-stm32f411-00-led-toogle-addr.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "bm-stm32f411-00-led-toogle-addr.bin"
+bm-led-toogle-addr.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "bm-led-toogle-addr.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(SIZE_OUTPUT)$(OBJDUMP_LIST)$(EXECUTABLES)$(OBJS)$(S_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(OBJCOPY_BIN) bm-stm32f411-00-led-toogle-addr.elf
+	-$(RM) bm-led-toogle-addr.elf bm-led-toogle-addr.list bm-led-toogle-addr.map default.size.stdout
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
@@ -94,6 +88,6 @@ fail-specified-linker-script-missing:
 warn-no-linker-script-specified:
 	@echo 'Warning: No linker script specified. Check the linker settings in the build configuration.'
 
-.PHONY: all clean dependents fail-specified-linker-script-missing warn-no-linker-script-specified
+.PHONY: all clean dependents main-build fail-specified-linker-script-missing warn-no-linker-script-specified
 
 -include ../makefile.targets
